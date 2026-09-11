@@ -7,11 +7,14 @@ Entrega: Aula 11 de setembro - Desafio de Componentes e Styled Components
 
 ## Integrantes
 
-- João Pedro Silva de Almeida
-- Gabriel Caputo Morais
-- Caio Castilho Soranço
-- Nicolas Isaac Pinto de Jesus
-- Jonathan Delmonte Pereira
+- João Pedro Silva de Almeida - tracknotrash@gmail.com
+- Gabriel Caputo Morais - bielcaputomorais@gmail.com
+- Caio Castilho Soranço - caiocastilho65@gmail.com
+- Nicolas Isaac Pinto de Jesus - nicolasisaac7@gmail.com
+- Jonathan Delmonte Pereira - jonathanpdelmon@gmail.com
+
+Todos os commits deste repositorio trazem os integrantes como co-autores, pelos
+mesmos e-mails listados acima.
 
 
 ## O que a aplicacao faz

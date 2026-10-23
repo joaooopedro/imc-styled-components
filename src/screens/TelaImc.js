@@ -9,7 +9,7 @@ import ResultadoImc from '../components/ResultadoImc';
 import TabelaFaixas from '../components/TabelaFaixas';
 
 import { calcularImc, normalizarAltura, paraNumero } from '../utils/imc';
-import { salvarCalculoImc } from '../services/firebase';
+import Storage from '../database/Storage';
 
 export function TelaImc() {
   const [peso, setPeso] = useState('');
@@ -32,10 +32,11 @@ export function TelaImc() {
     setCampoInvalido('');
     setResultado(saida);
 
-    // Registra o calculo e a data no Firebase.
+    // Salva o calculo de IMC e a data no Firebase.
+    const storage = new Storage();
     setSalvando(true);
     try {
-      await salvarCalculoImc({
+      await storage.adicionar({
         valor: saida.valor,
         categoria: saida.categoria,
         chaveCor: saida.chaveCor,

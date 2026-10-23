@@ -9,7 +9,7 @@ import Cabecalho from './src/components/Cabecalho';
 import BarraNavegacao from './src/components/BarraNavegacao';
 import TelaImc from './src/screens/TelaImc';
 import TelaHistorico from './src/screens/TelaHistorico';
-import { observarHistoricoImc } from './src/services/firebase';
+import Storage from './src/database/Storage';
 
 // O ThemeProvider entrega o objeto de tema para todos os styled components
 // da arvore, que o acessam pela prop "theme".
@@ -20,7 +20,8 @@ export default function App() {
   const [erroLeitura, setErroLeitura] = useState('');
 
   useEffect(() => {
-    const cancelar = observarHistoricoImc(
+    const storage = new Storage();
+    const cancelar = storage.listarCalculos(
       (lista) => {
         setRegistros(lista);
         setCarregando(false);
@@ -31,7 +32,9 @@ export default function App() {
         setErroLeitura('Nao foi possivel carregar o historico do Firebase.');
       }
     );
-    return () => cancelar();
+    return () => {
+      if (cancelar) cancelar();
+    };
   }, []);
 
   return (

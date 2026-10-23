@@ -13,14 +13,14 @@ Funcionalidades implementadas:
 - Calculo de IMC com validacao de peso e altura, exibindo valor numerico, classificacao e tabela de faixas de referencia.
 - Gravacao automatica de cada calculo valido no Firestore (`historico_imc`), registrando o valor calculado, a categoria, o peso, a altura e a data do calculo (`DD/MM/AAAA HH:mm`).
 - Tela de Historico sincronizada em tempo real com o Firebase (`onSnapshot`), listando todos os valores calculados e suas datas.
-- Opcao de apagar qualquer registro diretamente na tela de Historico (`deleteDoc`).
+- Opcao de apagar qualquer registro diretamente na tela de Historico (`delete`).
 
 A altura aceita metros (1,75) ou centimetros (175). A virgula e convertida em ponto antes do calculo.
 Valores fora das faixas aceitas geram mensagem de erro na tela.
 
 ## Como executar
 
-Pelo navegador, sem instalar nada: https://snack.expo.dev/HwxZGO_PLnWmms_rB7FUH
+Pelo navegador, sem instalar nada: https://snack.expo.dev/lY5eRWU8KTRwXqOSAgUgH
 
 Na maquina:
 
@@ -58,7 +58,8 @@ https://firestore.googleapis.com/v1/projects/imc-joao-15467/databases/(default)/
 App.js                           ThemeProvider, escuta do Firebase e alternancia de telas
 src/styles/theme.js              cores, espacamentos, fontes e raios
 src/utils/imc.js                 calculo, validacao, classificacao e formatacao
-src/services/firebase.js         conexao com o Firestore, gravacao, leitura em tempo real e exclusao
+src/database/Firebase.js         inicializacao do Firebase
+src/database/Storage.js          classe de acesso ao Firestore (adicionar, listarCalculos, apagar)
 src/screens/TelaImc.js           tela da calculadora e envio do calculo ao Firebase
 src/screens/TelaHistorico.js     tela de listagem dos calculos salvos e exclusao
 src/components/                  componentes visuais reutilizaveis com Styled Components

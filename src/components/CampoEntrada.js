@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { Rotulo, Texto } from './Texto';
 
@@ -7,13 +7,13 @@ const Area = styled.View`
 `;
 
 // A caixa envolve o TextInput e a unidade na mesma linha.
-// A borda fica vermelha quando o campo esta com erro.
+// A borda fica vermelha com erro e escura quando o campo esta em foco.
 const Caixa = styled.View`
   flex-direction: row;
   align-items: center;
   border-width: 1px;
-  border-color: ${({ theme, temErro }) =>
-    temErro ? theme.cores.obesidade : theme.cores.linha};
+  border-color: ${({ theme, temErro, emFoco }) =>
+    temErro ? theme.cores.obesidade : emFoco ? theme.cores.primaria : theme.cores.linha};
   border-radius: ${({ theme }) => theme.raio.m};
   padding: 0 ${({ theme }) => theme.espacos.m};
 `;
@@ -23,6 +23,11 @@ const Entrada = styled.TextInput.attrs(({ theme }) => ({
   keyboardType: 'numeric',
 }))`
   flex: 1;
+  min-width: 0;
+  /* No navegador o TextInput ganha um contorno proprio que vaza da caixa.
+     O foco passa a ser mostrado pela borda da Caixa. */
+  outline-width: 0;
+  outline-style: none;
   height: 48px;
   color: ${({ theme }) => theme.cores.texto};
   font-size: ${({ theme }) => theme.fontes.m};
@@ -42,11 +47,19 @@ export function CampoEntrada({
   sufixo,
   temErro,
 }) {
+  const [emFoco, setEmFoco] = useState(false);
+
   return (
     <Area>
       <Rotulo>{rotulo}</Rotulo>
-      <Caixa temErro={temErro}>
-        <Entrada value={valor} onChangeText={aoMudar} placeholder={placeholder} />
+      <Caixa temErro={temErro} emFoco={emFoco}>
+        <Entrada
+          value={valor}
+          onChangeText={aoMudar}
+          placeholder={placeholder}
+          onFocus={() => setEmFoco(true)}
+          onBlur={() => setEmFoco(false)}
+        />
         {sufixo ? <Unidade>{sufixo}</Unidade> : null}
       </Caixa>
     </Area>

@@ -20,7 +20,7 @@ Valores fora das faixas aceitas geram mensagem de erro na tela.
 
 ## Como executar
 
-Pelo navegador, sem instalar nada: https://snack.expo.dev/lY5eRWU8KTRwXqOSAgUgH
+Pelo navegador, sem instalar nada: https://snack.expo.dev/SpSoEkIzn8TH9CFwsMOIk
 
 Na maquina:
 
